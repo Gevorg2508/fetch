@@ -1,5 +1,10 @@
+
 function getInfo(name) {
-    fetch(`https://restcountries.com/v3.1/name/${name}`)
+    let api = `https://restcountries.com/v3.1/all`
+    if(name){
+        api = `https://restcountries.com/v3.1/name/${name}`
+    }
+    fetch(api)
     .then(res => {
         // console.log(res);
         if(!res.ok){
@@ -28,4 +33,4 @@ function getInfo(name) {
             document.querySelector('#app').innerHTML = html;
         })
 }
-
+getInfo()
