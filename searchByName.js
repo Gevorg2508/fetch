@@ -29,7 +29,7 @@ function getInfo(name) {
                 <p>subregion:  ${country.subregion}</p>
                 </div>
                 </div>`
-            });
+            }).join('');
             document.querySelector('#app').innerHTML = html;
         })
 }

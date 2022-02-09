@@ -13,7 +13,6 @@
                 return getInfo(value);
             }else{
                 getInfo();
-                return func2();
             }
         }
         function func2(){
@@ -45,8 +44,8 @@
 </head>
 <body>
     <div id = "search">
-    <input id="text" placeholder="input country name">
-    <button onclick="func1()" id="button">Search</button>
+    <input type = "text" onkeyup = "func1()" id="text" placeholder="input country name">
+    <!-- <button onclick="func1()" id="button">Search</button> -->
     </div>
     <div id="app">
     </div>
