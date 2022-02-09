@@ -1,54 +1,29 @@
-const apiUrl = "https://restcountries.com/v3.1";
-async function fetchPosts() {
-    try {
-        const response = await fetch(`${apiUrl}/name`);
-
-        if (!response.ok) {
-            throw new Error(`failed to fetch ${response.status}`)
+function getInfo() {
+    fetch('https://restcountries.com/v3.1/all')
+    .then(res => {
+        // console.log(res);
+        if(!res.ok){
+            throw new Error('ERROR');
         }
-
-        return await response.json()
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-function listPosts(postContainerElementId) {
-    const postContainerElement = document.getElementById(postContainerElementId);
-    if (!postContainerElement) {
-        return;
-    }
-
-    fetchPosts().then(posts => {
-        if(!posts){
-            postContainerElement.innerHTML = "No posts fetched.";
-            return;
-        }
-
-        for(post of posts){
-            postContainerElement.appendChild(postElement(post));
-        }
-     })
-        .catch(e => {
-            console.log(e);
+        return res.json()})
+        .then(data => {
+            const html = data.map(country => {
+                return `
+                <div class = "user">
+                <p>Flag:  <img src = "${country.flags.png}" alt = "${country.name.common}"></p>
+                <div class = "info">
+                <p>Name:  ${country.name.common}</p>
+                <p>official:  ${country.name.official}</p>
+                <p>population:  ${country.population}</p>
+                <p>region:  ${country.region}</p>
+                <p>status:  ${country.status}</p>
+                <p>startOfWeek:  ${country.startOfWeek}</p>
+                <p>subregion:  ${country.subregion}</p>
+                </div>
+                </div>`
+            });
+            document.querySelector('#app').innerHTML = html;
         })
 }
 
-function postElement(post){
-    const anchorElement = document.createElement('a');
-    anchorElement.setAttribute('href', `${apiUrl}/name/${post.common}`)
-    anchorElement.setAttribute('target', '_blank');
-    anchorElement.innerText = capitalizeFirstLetter(post.title)
-
-    postTitleElement = document.createElement('h3');
-    postTitleElement.appendChild(anchorElement);
-
-
-
-    return postTitleElement;
-}
-function capitalizeFirstLetter(str){
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-
+getInfo();

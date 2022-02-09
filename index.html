@@ -6,13 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .user{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            background-color: #ddd;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        .info{
+            padding: 10px;
+            margin: 0px 10px
+        }
+    </style>
 </head>
 <body>
-    <div id="post-selection">
-        <h2>Latest posts</h2>
-        <div id = "post-items-container"></div>
+    <div id="app">
     </div>
-    <script src = "searchByName.js"></script>
-    <!-- <script>listPosts(post-items-container)</script> -->
 </body>
+<script src = "searchByName.js"></script>
 </html>
