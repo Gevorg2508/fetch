@@ -1,5 +1,5 @@
-function getInfo() {
-    fetch('https://restcountries.com/v3.1/all')
+function getInfo(name) {
+    fetch(`https://restcountries.com/v3.1/name/${name}`)
     .then(res => {
         // console.log(res);
         if(!res.ok){
@@ -10,7 +10,10 @@ function getInfo() {
             const html = data.map(country => {
                 return `
                 <div class = "user">
-                <p>Flag:  <img src = "${country.flags.png}" alt = "${country.name.common}"></p>
+                <div class = "flags">
+                <p>Flag:  
+                <img src = "${country.flags.png}" alt = "${country.name.common} width = "150px" height ="150px""></p>
+                </div>
                 <div class = "info">
                 <p>Name:  ${country.name.common}</p>
                 <p>official:  ${country.name.official}</p>
@@ -26,4 +29,3 @@ function getInfo() {
         })
 }
 
-getInfo();

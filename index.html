@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script type = "text/javascript">
+        function func1(){
+            let value = document.getElementById('text').value;
+            if(isNaN(value)){
+                return getInfo(value);
+            }else{
+                return func2()
+            }
+        }
+        function func2(){
+            alert('input right data or check your configurations');
+        }
+    </script>
     <style>
         .user{
             display: flex;
@@ -16,12 +29,20 @@
             margin-bottom: 10px;
         }
         .info{
-            padding: 10px;
+            padding: 30px 50px;
             margin: 0px 10px
+        }
+        .flags{
+            padding: 70px;
+            margin: 10px;
         }
     </style>
 </head>
 <body>
+    <div id = "search">
+    <input id="text" placeholder="input country name">
+    <button onclick="func1()" id="button">Search</button>
+    </div>
     <div id="app">
     </div>
 </body>
